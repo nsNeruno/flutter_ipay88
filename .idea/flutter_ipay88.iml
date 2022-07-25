@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_platform_interface/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_platform_interface/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_platform_interface/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/device_info_plus/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/device_info_plus/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/device_info_plus/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/device_info_plus/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/device_info_plus/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/device_info_plus/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
