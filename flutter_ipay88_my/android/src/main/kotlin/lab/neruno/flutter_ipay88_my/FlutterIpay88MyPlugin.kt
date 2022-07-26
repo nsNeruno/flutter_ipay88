@@ -12,6 +12,7 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
+import io.flutter.plugin.common.MethodChannel.Result
 
 /** FlutterIpay88MyPlugin */
 class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IPayIHResultDelegate {
