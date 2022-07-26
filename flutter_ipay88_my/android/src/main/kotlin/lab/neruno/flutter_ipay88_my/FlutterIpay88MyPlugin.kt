@@ -2,7 +2,10 @@ package lab.neruno.flutter_ipay88_my
 
 import android.app.Activity
 import androidx.annotation.NonNull
-import com.ipay.*
+import com.ipay.IPayIH
+import com.ipay.IPayIHPayment
+import com.ipay.IPayIHR
+import com.ipay.IPayIHResultDelegate
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -12,8 +15,8 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
-/** FlutterIpay88IdPlugin */
-class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IpayResultDelegate {
+/** FlutterIpay88MyPlugin */
+class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IPayIHResultDelegate {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -22,7 +25,7 @@ class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Ip
   private var activity: Activity? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "id.lab.neruno.ipay88/platform")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "my.lab.neruno.ipay88/platform")
     channel.setMethodCallHandler(this)
   }
 
@@ -31,23 +34,23 @@ class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Ip
       "checkout" -> {
         result.success(null)
         activity?.let { a ->
-          IpayPayment().apply {
-            merchantKey = call.argument<String>("merchantKey") ?: ""
+          IPayIHPayment().apply {
             merchantCode = call.argument<String>("merchantCode") ?: ""
             paymentId = call.argument<String>("paymentId") ?: ""
             refNo = call.argument<String>("refNo") ?: ""
             amount = call.argument<String>("amount") ?: "1.00"
-            currency = call.argument<String>("currency") ?: "IDR"
+            currency = call.argument<String>("currency") ?: "MYR"
             prodDesc = call.argument<String>("prodDesc") ?: ""
             userName = call.argument<String>("userName") ?: ""
             userEmail = call.argument<String>("userEmail") ?: ""
-            userContact = call.argument<String>("userContact") ?: ""
+            actionType = call.argument<String>("actionType")
             remark = call.argument<String>("remark")
             lang = call.argument<String>("lang")
-            country = "ID"
+            country = call.argument<String>("country") ?: "MY"
             backendPostURL = call.argument<String>("backendPostURL") ?: ""
+            appdeeplink = call.argument<String>("appDeepLink")
           }.let {
-            val intent = Ipay.getInstance().checkout(it, a, this)
+            val intent = IPayIH.getInstance().checkout(it, a, this, IPayIH.PAY_METHOD_CREDIT_CARD)
             a.startActivityForResult(intent, 1)
           }
         }
@@ -55,12 +58,13 @@ class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Ip
       "requery" -> {
         result.success(null)
         activity?.let { a ->
-          IpayR().apply {
+          IPayIHR().apply {
             merchantCode = call.argument<String>("merchantCode") ?: ""
             amount = call.argument<String>("amount") ?: "1.00"
             refNo = call.argument<String>("refNo") ?: ""
+            country_Code = call.argument<String>("countryCode") ?: "MY"
           }.let {
-            val intent = Ipay().requery(it, a, this)
+            val intent = IPayIH().requery(it, a, this)
             a.startActivityForResult(intent, 2)
           }
         }

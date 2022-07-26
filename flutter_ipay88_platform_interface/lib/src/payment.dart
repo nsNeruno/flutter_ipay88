@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:ui';
+
 class IPayPayment {
 
   IPayPayment({
@@ -32,6 +35,10 @@ class IPayPayment {
   String country;
   String backendPostURL;
 
+  /// Not available in Indonesian implementation
+  String? actionType;
+  String? appDeepLink;
+
   Map<String, dynamic> toArguments() {
     return {
       'paymentId': paymentId,
@@ -48,6 +55,54 @@ class IPayPayment {
       'lang': lang,
       'country': country,
       'backEndPostURL': backendPostURL,
+      'actionType': actionType,
+      'appDeepLink': appDeepLink,
     };
   }
+
+  @override
+  String toString() => const JsonEncoder.withIndent('\t',).convert(
+    toArguments(),
+  );
+}
+
+class IPayPaymentMethod implements Comparable {
+
+  const IPayPaymentMethod({
+    required this.id,
+    required this.name,
+    required this.currency,
+    this.remark,
+  });
+
+  final int id;
+  final String name;
+  final String currency;
+  final String? remark;
+
+  @override
+  int compareTo(other) {
+    if (other is! IPayPaymentMethod) {
+      return -1;
+    }
+    return id.compareTo(other.id,);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (other is! IPayPaymentMethod) {
+      return false;
+    }
+    return [
+      id == other.id,
+      name == other.name,
+      currency == other.currency,
+    ].every((cnd) => cnd,);
+  }
+
+  @override
+  int get hashCode => hashValues(id, name, currency,);
+
+  @override
+  String toString() => "$runtimeType#$id(${[name, currency, remark,].join(", ",)})";
 }

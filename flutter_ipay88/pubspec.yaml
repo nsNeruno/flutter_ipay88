@@ -4,7 +4,7 @@ version: 0.0.1
 homepage:
 
 environment:
-  sdk: ">=2.16.1 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=2.5.0"
 
 dependencies:
@@ -13,6 +13,12 @@ dependencies:
 
   flutter_ipay88_platform_interface:
     path: ../flutter_ipay88_platform_interface
+
+  flutter_ipay88_my:
+    path: ../flutter_ipay88_my
+
+  flutter_ipay88_id:
+    path: ../flutter_ipay88_id
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_ipay88_my/flutter_ipay88_my.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('flutter_ipay88_my');
+  const MethodChannel channel = MethodChannel("my.lab.neruno.ipay88/platform",);
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -15,9 +14,5 @@ void main() {
 
   tearDown(() {
     channel.setMockMethodCallHandler(null);
-  });
-
-  test('getPlatformVersion', () async {
-    expect(await FlutterIpay88My.platformVersion, '42');
   });
 }

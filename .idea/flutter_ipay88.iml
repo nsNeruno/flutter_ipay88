@@ -36,6 +36,18 @@
       <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_id/example/ios/.symlinks/plugins/permission_handler_apple/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/device_info_plus/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/device_info_plus/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/device_info_plus/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/permission_handler_apple/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/permission_handler_apple/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/permission_handler_apple/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/permission_handler_apple/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/permission_handler_apple/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/permission_handler_apple/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/device_info_plus/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/device_info_plus/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_ipay88_my/example/ios/.symlinks/plugins/device_info_plus/.pub" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

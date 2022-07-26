@@ -6,14 +6,25 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ipay88_platform_interface/flutter_ipay88_platform_interface.dart';
 
-class IPay88Malaysia extends IPay {
+export 'src/payment_methods.dart';
+
+@immutable
+class IPay88 extends IPay {
+
+  IPay88._();
+
+  static late final IPay88 _instance = IPay88._();
+
+  factory IPay88() => _instance;
 
   @override
   Future<void> checkout(IPayPayment payment) {
     if (payment.currency.trim().isEmpty) {
       payment.currency = "MYR";
     }
-    payment.country = "MY";
+    if (payment.country.trim().isEmpty) {
+      payment.country = "MY";
+    }
     return super.checkout(payment);
   }
 
