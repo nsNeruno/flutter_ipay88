@@ -4,12 +4,10 @@ Unofficial Implementation for IPay88 Payment Gateway Mobile SDK.
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Please check the sub repo that contains the main plugin [here](https://github.com/nsNeruno/flutter_ipay88/tree/master/flutter_ipay88).
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+This repository contains:
+- The Main Plugin
+- Implementation for [Malaysia and a few countries](https://github.com/nsNeruno/flutter_ipay88/tree/master/flutter_ipay88_my)
+- Exclusive implementation for [Indonesia](https://github.com/nsNeruno/flutter_ipay88/tree/master/flutter_ipay88_id)
+- [The Platform Interface](https://github.com/nsNeruno/flutter_ipay88/tree/master/flutter_ipay88_platform_interface)
