@@ -15,17 +15,19 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
 /** FlutterIpay88MyPlugin */
-class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IPayIHResultDelegate {
+class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  private lateinit var channelDelegate: IPayIHResultDelegate
   private var activity: Activity? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "my.lab.neruno.ipay88/platform")
     channel.setMethodCallHandler(this)
+    channelDelegate = IPayChannelDelegate(channel)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -49,7 +51,7 @@ class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IP
             backendPostURL = call.argument<String>("backendPostURL") ?: ""
             appdeeplink = call.argument<String>("appDeepLink")
           }.let {
-            val intent = IPayIH.getInstance().checkout(it, a, this, IPayIH.PAY_METHOD_CREDIT_CARD)
+            val intent = IPayIH.getInstance().checkout(it, a, channelDelegate, IPayIH.PAY_METHOD_CREDIT_CARD)
             a.startActivityForResult(intent, 1)
           }
         }
@@ -63,7 +65,7 @@ class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IP
             refNo = call.argument<String>("refNo") ?: ""
             country_Code = call.argument<String>("countryCode") ?: "MY"
           }.let {
-            val intent = IPayIH().requery(it, a, this)
+            val intent = IPayIH().requery(it, a, channelDelegate)
             a.startActivityForResult(intent, 2)
           }
         }
@@ -74,63 +76,6 @@ class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IP
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
-  }
-
-  override fun onConnectionError(
-    var1: String?,
-    var2: String?,
-    var3: String?,
-    var4: String?,
-    var5: String?,
-    var6: String?
-  ) {}
-
-  override fun onPaymentSucceeded(transId: String?, refNo: String?, amount: String?, remark: String?, authCode: String?) {
-    channel.invokeMethod(
-      "onPaymentSucceeded",
-      mapOf(
-        "transId" to transId,
-        "refNo" to refNo,
-        "amount" to amount,
-        "authCode" to authCode,
-      )
-    )
-  }
-
-  override fun onPaymentFailed(transId: String?, refNo: String?, amount: String?, remark: String?, errDesc: String?) {
-    channel.invokeMethod(
-      "onPaymentFailed",
-      mapOf(
-        "transId" to transId,
-        "refNo" to refNo,
-        "amount" to amount,
-        "errDesc" to errDesc,
-      )
-    )
-  }
-
-  override fun onPaymentCanceled(transId: String?, refNo: String?, amount: String?, remark: String?, errDesc: String?) {
-    channel.invokeMethod(
-      "onPaymentCanceled",
-      mapOf(
-        "transId" to transId,
-        "refNo" to refNo,
-        "amount" to amount,
-        "errDesc" to errDesc,
-      )
-    )
-  }
-
-  override fun onRequeryResult(merchantCode: String?, refNo: String?, amount: String?, result: String?) {
-    channel.invokeMethod(
-      "onRequeryResult",
-      mapOf(
-        "merchantCode" to merchantCode,
-        "refNo" to refNo,
-        "amount" to amount,
-        "result" to result,
-      )
-    )
   }
 
   /**
