@@ -9,7 +9,7 @@ The SDK binaries are already included within this plugin. You may proceed to che
 #### Flutter Side
 ```yaml
 # Add this under dependencies on your pubspec.yaml
-flutter_ipay88_my:
+flutter_ipay88:
   git:
     url: https://github.com/nsNeruno/flutter_ipay88.git
     path: flutter_ipay88
