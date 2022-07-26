@@ -128,21 +128,25 @@ packages:
   flutter_ipay88_id:
     dependency: transitive
     description:
-      path: "../../flutter_ipay88_id"
-      relative: true
-    source: path
+      path: flutter_ipay88_id
+      ref: master
+      resolved-ref: "7d58052cdc436982f13f3db3a4cab5d575ee3c74"
+      url: "https://github.com/nsNeruno/flutter_ipay88.git"
+    source: git
     version: "0.0.1"
   flutter_ipay88_my:
     dependency: transitive
     description:
-      path: "../../flutter_ipay88_my"
-      relative: true
-    source: path
+      path: flutter_ipay88_my
+      ref: master
+      resolved-ref: "7d58052cdc436982f13f3db3a4cab5d575ee3c74"
+      url: "https://github.com/nsNeruno/flutter_ipay88.git"
+    source: git
     version: "0.0.1"
   flutter_ipay88_platform_interface:
     dependency: transitive
     description:
-      path: "../../flutter_ipay88_platform_interface"
+      path: "../../../../development/flutter/.pub-cache/git/flutter_ipay88-7d58052cdc436982f13f3db3a4cab5d575ee3c74/flutter_ipay88_platform_interface"
       relative: true
     source: path
     version: "0.0.1"

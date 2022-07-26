@@ -128,9 +128,11 @@ packages:
   flutter_ipay88_platform_interface:
     dependency: transitive
     description:
-      path: "../../flutter_ipay88_platform_interface"
-      relative: true
-    source: path
+      path: flutter_ipay88_platform_interface
+      ref: master
+      resolved-ref: "7d58052cdc436982f13f3db3a4cab5d575ee3c74"
+      url: "https://github.com/nsNeruno/flutter_ipay88.git"
+    source: git
     version: "0.0.1"
   flutter_lints:
     dependency: "direct dev"
@@ -302,5 +304,5 @@ packages:
     source: hosted
     version: "2.5.2"
 sdks:
-  dart: ">=2.12.0 <3.0.0"
+  dart: ">=2.15.0 <3.0.0"
   flutter: ">=2.8.0"

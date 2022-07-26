@@ -1,7 +1,8 @@
 name: flutter_ipay88
 description: Unofficial Implementation for IPay88 Payment Gateway Mobile SDK.
 version: 0.0.1
-homepage:
+homepage: https://github.com/nsNeruno/flutter_ipay88
+publish_to: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -11,14 +12,24 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_ipay88_platform_interface:
-    path: ../flutter_ipay88_platform_interface
-
   flutter_ipay88_my:
-    path: ../flutter_ipay88_my
+    git:
+      url: https://github.com/nsNeruno/flutter_ipay88.git
+      path: flutter_ipay88_my
+      ref: master
 
   flutter_ipay88_id:
-    path: ../flutter_ipay88_id
+    git:
+      url: https://github.com/nsNeruno/flutter_ipay88.git
+      path: flutter_ipay88_id
+      ref: master
+
+dependency_overrides:
+  flutter_ipay88_platform_interface:
+    git:
+      url: https://github.com/nsNeruno/flutter_ipay88.git
+      path: flutter_ipay88_platform_interface
+      ref: master
 
 dev_dependencies:
   flutter_test:
