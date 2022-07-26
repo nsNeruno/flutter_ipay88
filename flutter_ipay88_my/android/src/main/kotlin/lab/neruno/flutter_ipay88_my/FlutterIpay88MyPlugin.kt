@@ -6,14 +6,12 @@ import com.ipay.IPayIH
 import com.ipay.IPayIHPayment
 import com.ipay.IPayIHR
 import com.ipay.IPayIHResultDelegate
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.MethodChannel.Result
 
 /** FlutterIpay88MyPlugin */
 class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IPayIHResultDelegate {
@@ -76,6 +74,15 @@ class FlutterIpay88MyPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IP
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
   }
+
+  override fun onConnectionError(
+    var1: String?,
+    var2: String?,
+    var3: String?,
+    var4: String?,
+    var5: String?,
+    var6: String?
+  ) {}
 
   override fun onPaymentSucceeded(transId: String?, refNo: String?, amount: String?, remark: String?, authCode: String?) {
     channel.invokeMethod(
