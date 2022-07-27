@@ -22,27 +22,36 @@ Add declaration of additional Activities provided by _**IPay88**_ under `Android
 ```xml
 <!-- AndroidManifest.xml under android/app/src/main/ -->
 <manifest ...>
-    <application ...>
-        <!-- Your MainActivity declaration -->
-        
-        <!--- Declare these Activities -->
-        <activity android:name="com.ipay.IPayIHAcitivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name="com.ipay.IPayIHAcitivityR" android:configChanges="orientation|screenSize"/>
+<application ...>
+    <!-- Your MainActivity declaration -->
+
+    <!--- Declare these Activities -->
+<activity android:name="com.ipay.IPayIHAcitivity" android:configChanges="orientation|screenSize"/>
+<activity android:name="com.ipay.IPayIHAcitivityR" android:configChanges="orientation|screenSize"/>
     </application>
-</manifest>
+    </manifest>
 ```
 ##### Indonesia Only
+Under your project's `android` directory, look for `gradle.properties` or create one if it doesn't exist and add these lines
+```properties
+# If your project is using Gradle version below 7
+android.jetifier.blacklist=ipay88_android
+# If your project is using Gradle version 7 and above
+android.jetifier.ignoreList=ipay88_android
+# Just in case you can add both of these lines as Gradle doesn't raise an error about this
+```
+Then on your `AndroidManifest.xml`
 ```xml
 <!-- AndroidManifest.xml under android/app/src/main/ -->
 <manifest ...>
-    <application ...>
-        <!-- Your MainActivity declaration -->
-        
-        <!--- Declare these Activities -->
-        <activity android:name="com.ipay.IpayAcitivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name="com.ipay.IpayAcitivityR" android:configChanges="orientation|screenSize"/>
+<application ...>
+    <!-- Your MainActivity declaration -->
+
+    <!--- Declare these Activities -->
+<activity android:name="com.ipay.IpayAcitivity" android:configChanges="orientation|screenSize"/>
+<activity android:name="com.ipay.IpayAcitivityR" android:configChanges="orientation|screenSize"/>
     </application>
-</manifest>
+    </manifest>
 ```
 If you're covering all regions, you may add both declarations.
 **Notice the different Activity class names.**
@@ -74,13 +83,13 @@ IPay sdkID = plugin.sdkID;
 
 // Create an empty IPay88 Payment Object and assign some values to it's fields
 IPayPayment payment = IPayPayment()
-    ..paymentId = "test"
-    ..amount = "100.0";
+  ..paymentId = "test"
+  ..amount = "100.0";
 
 // Create an IPay88 Payment Object with pre-init values
 payment = IPayPayment(
-    paymentId: "test",
-    amount: "100.0",
+paymentId: "test",
+amount: "100.0",
 );
 
 // Checking out with the Payment Object
@@ -88,17 +97,17 @@ sdk.checkout(payment,);
 
 // Create an empty IPay88 Requery Object and assign some values to it's fields
 IPayRequery requery = IPayRequery()
-    ..merchantCode = "test"
-    ..refNo = "123"
-    ..amount = "100.0";
-    
+  ..merchantCode = "test"
+  ..refNo = "123"
+  ..amount = "100.0";
+
 // Create an IPay88 Payment Object with pre-init values
 requery = IPayRequery(
-    merchantCode: "test",
-    refNo: "123",
-    amount: "100.0",
+merchantCode: "test",
+refNo: "123",
+amount: "100.0",
 );
-    
+
 sdk.requery(requery);
 ```
 
@@ -124,41 +133,41 @@ sdk.removeDelegate(this,);
 ```dart
 class _CheckoutPageState extends State<CheckoutPage> implements IPayResultDelegate {
 
-    IPay get _sdk => FlutterIPay88().sdk;
+  IPay get _sdk => FlutterIPay88().sdk;
 
-    @override
-    void initState() {
-        super.initState();
-        // Start listening
-        _sdk.addDelegate(this,);
-    }
+  @override
+  void initState() {
+    super.initState();
+    // Start listening
+    _sdk.addDelegate(this,);
+  }
 
-    @override
-    void onPaymentSucceeded(String? transId, String? refNo, String? amount, String? remark, String? authCode,) {
-        // call setState or do something
-    }
+  @override
+  void onPaymentSucceeded(String? transId, String? refNo, String? amount, String? remark, String? authCode,) {
+    // call setState or do something
+  }
 
-    @override
-    void onPaymentFailed(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
-        // call setState or do something
-    }
+  @override
+  void onPaymentFailed(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    // call setState or do something
+  }
 
-    @override
-    void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
-        // call setState or do something
-    }
+  @override
+  void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    // call setState or do something
+  }
 
-    @override
-    void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result,) {
-        // call setState or do something
-    }
-    
-    @override
-    void dispose() {
-        // Stop listening
-        _sdk.removeDelegate(this,);
-        super.dispose();
-    }
+  @override
+  void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result,) {
+    // call setState or do something
+  }
+
+  @override
+  void dispose() {
+    // Stop listening
+    _sdk.removeDelegate(this,);
+    super.dispose();
+  }
 }
 ```
 
@@ -166,81 +175,81 @@ class _CheckoutPageState extends State<CheckoutPage> implements IPayResultDelega
 ```dart
 class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> implements IPayResultDelegate {
 
-    IPay get _sdk => FlutterIPay88().sdk;
+  IPay get _sdk => FlutterIPay88().sdk;
 
-    CheckoutBloc() {
-        // Start listening
-        _sdk.addDelegate(this,);
-    }
+  CheckoutBloc() {
+    // Start listening
+    _sdk.addDelegate(this,);
+  }
 
-    @override
-    void onPaymentSucceeded(String? transId, String? refNo, String? amount, String? remark, String? authCode,) {
-        // emit a State or do something
-    }
+  @override
+  void onPaymentSucceeded(String? transId, String? refNo, String? amount, String? remark, String? authCode,) {
+    // emit a State or do something
+  }
 
-    @override
-    void onPaymentFailed(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
-        // emit a State or do something
-    }
+  @override
+  void onPaymentFailed(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    // emit a State or do something
+  }
 
-    @override
-    void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
-        // emit a State or do something
-    }
+  @override
+  void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    // emit a State or do something
+  }
 
-    @override
-    void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result,) {
-        // emit a State or do something
-    }
-    
-    @override
-    void close() {
-        // Stop listening
-        _sdk.removeDelegate(this,);
-        super.close();
-    }
+  @override
+  void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result,) {
+    // emit a State or do something
+  }
+
+  @override
+  void close() {
+    // Stop listening
+    _sdk.removeDelegate(this,);
+    super.close();
+  }
 }
 ```
 
 #### GetX Example
 ```dart
 class CheckoutController extends GetxController implements IPayResultDelegate {
-    
-    IPay get _sdk => FlutterIPay88().sdk;
 
-    @override
-    void onInit() {
-        super.onInit();
-        // Start listening
-        _sdk.addDelegate(this,);
-    }
+  IPay get _sdk => FlutterIPay88().sdk;
 
-    @override
-    void onPaymentSucceeded(String? transId, String? refNo, String? amount, String? remark, String? authCode,) {
-        // add value to .obs or do something
-    }
+  @override
+  void onInit() {
+    super.onInit();
+    // Start listening
+    _sdk.addDelegate(this,);
+  }
 
-    @override
-    void onPaymentFailed(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
-        // add value to .obs or do something
-    }
+  @override
+  void onPaymentSucceeded(String? transId, String? refNo, String? amount, String? remark, String? authCode,) {
+    // add value to .obs or do something
+  }
 
-    @override
-    void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
-        // add value to .obs or do something
-    }
+  @override
+  void onPaymentFailed(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    // add value to .obs or do something
+  }
 
-    @override
-    void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result,) {
-        // add value to .obs or do something
-    }
-    
-    @override
-    void onClose() {
-        // Stop listening
-        _sdk.removeDelegate(this,);
-        super.onClose();
-    }
+  @override
+  void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    // add value to .obs or do something
+  }
+
+  @override
+  void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result,) {
+    // add value to .obs or do something
+  }
+
+  @override
+  void onClose() {
+    // Stop listening
+    _sdk.removeDelegate(this,);
+    super.onClose();
+  }
 }
 ```
 
