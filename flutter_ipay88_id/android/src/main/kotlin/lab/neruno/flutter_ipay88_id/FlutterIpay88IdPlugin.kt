@@ -2,7 +2,10 @@ package lab.neruno.flutter_ipay88_id
 
 import android.app.Activity
 import androidx.annotation.NonNull
-import com.ipay.*
+import com.ipay.Ipay
+import com.ipay.IpayPayment
+import com.ipay.IpayR
+import com.ipay.IpayResultDelegate
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -19,7 +22,7 @@ class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
-  private lateinit var channelDelegate: IPayIHResultDelegate
+  private lateinit var channelDelegate: IpayResultDelegate
   private var activity: Activity? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -49,7 +52,7 @@ class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
             country = "ID"
             backendPostURL = call.argument<String>("backendPostURL") ?: ""
           }.let {
-            val intent = Ipay.getInstance().checkout(it, a, this)
+            val intent = Ipay.getInstance().checkout(it, a, channelDelegate)
             a.startActivityForResult(intent, 1)
           }
         }
@@ -62,7 +65,7 @@ class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
             amount = call.argument<String>("amount") ?: "1.00"
             refNo = call.argument<String>("refNo") ?: ""
           }.let {
-            val intent = Ipay().requery(it, a, this)
+            val intent = Ipay().requery(it, a, channelDelegate)
             a.startActivityForResult(intent, 2)
           }
         }
