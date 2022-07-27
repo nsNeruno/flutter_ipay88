@@ -13,17 +13,19 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
 /** FlutterIpay88IdPlugin */
-class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, IpayResultDelegate {
+class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  private lateinit var channelDelegate: IPayIHResultDelegate
   private var activity: Activity? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "id.lab.neruno.ipay88/platform")
     channel.setMethodCallHandler(this)
+    channelDelegate = IPayChannelDelegate(channel)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -71,54 +73,6 @@ class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Ip
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
-  }
-
-  override fun onPaymentSucceeded(transId: String?, refNo: String?, amount: String?, remark: String?, authCode: String?) {
-    channel.invokeMethod(
-      "onPaymentSucceeded",
-      mapOf(
-        "transId" to transId,
-        "refNo" to refNo,
-        "amount" to amount,
-        "authCode" to authCode,
-      )
-    )
-  }
-
-  override fun onPaymentFailed(transId: String?, refNo: String?, amount: String?, remark: String?, errDesc: String?) {
-    channel.invokeMethod(
-      "onPaymentFailed",
-      mapOf(
-        "transId" to transId,
-        "refNo" to refNo,
-        "amount" to amount,
-        "errDesc" to errDesc,
-      )
-    )
-  }
-
-  override fun onPaymentCanceled(transId: String?, refNo: String?, amount: String?, remark: String?, errDesc: String?) {
-    channel.invokeMethod(
-      "onPaymentCanceled",
-      mapOf(
-        "transId" to transId,
-        "refNo" to refNo,
-        "amount" to amount,
-        "errDesc" to errDesc,
-      )
-    )
-  }
-
-  override fun onRequeryResult(merchantCode: String?, refNo: String?, amount: String?, result: String?) {
-    channel.invokeMethod(
-      "onRequeryResult",
-      mapOf(
-        "merchantCode" to merchantCode,
-        "refNo" to refNo,
-        "amount" to amount,
-        "result" to result,
-      )
-    )
   }
 
   /**
