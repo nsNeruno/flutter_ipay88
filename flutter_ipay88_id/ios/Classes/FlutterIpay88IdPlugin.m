@@ -9,12 +9,13 @@ static FlutterMethodChannel* channel;
 -(id) init {
     self = [super init];
     paymentSdk = [[Ipay alloc] init];
+    paymentSdk.delegate = self;
     return self;
 }
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     channel = [FlutterMethodChannel
-      methodChannelWithName:@"flutter_ipay88_id"
+      methodChannelWithName:@"id.lab.neruno.ipay88/platform"
             binaryMessenger:[registrar messenger]];
     FlutterIpay88IdPlugin* instance = [[FlutterIpay88IdPlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:channel];
