@@ -130,7 +130,7 @@ packages:
     description:
       path: flutter_ipay88_platform_interface
       ref: master
-      resolved-ref: "818da328ae1f65c7e621016cb8b4fb32b4893152"
+      resolved-ref: "02795dfdc0c4136079f151f2ad9f6a8a6dbe60a3"
       url: "https://github.com/nsNeruno/flutter_ipay88.git"
     source: git
     version: "0.0.1"

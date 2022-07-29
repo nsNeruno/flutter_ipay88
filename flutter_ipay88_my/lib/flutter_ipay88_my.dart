@@ -18,7 +18,18 @@ class IPay88 extends IPay {
   factory IPay88() => _instance;
 
   @override
-  Future<void> checkout(IPayPayment payment) {
+  Future<void> checkout({
+    required IPayPayment payment,
+    List<ItemTransaction>? itemTransactions,
+    IPayAddress? shippingAddress,
+    IPayAddress? billingAddress,
+    List<IPaySeller>? sellers,
+    IPayPaymentMethod? method,
+    List<SettingField>? settingFields,
+  }) async {
+    await super.checkout(
+      payment: payment,
+    );
     if (payment.currency.trim().isEmpty) {
       payment.currency = "MYR";
     }
@@ -29,7 +40,15 @@ class IPay88 extends IPay {
       "checkout",
       payment.toArguments(),
     );
-    return super.checkout(payment);
+  }
+
+  @override
+  Future<void> requery(IPayRequery requery) async {
+    await super.requery(requery);
+    channel.invokeMethod(
+      "requery",
+      requery.toArguments(),
+    );
   }
 
   @override

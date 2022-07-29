@@ -43,6 +43,12 @@ class IPay88Indonesia extends IPay {
     if (sellers == null || sellers.isEmpty) {
       throw ArgumentError.value(itemTransactions, "Sellers", "Must not be empty",);
     }
+    if (payment.currency.trim().isEmpty) {
+      payment.currency = "IDR";
+    }
+    if (payment.country.trim().isEmpty) {
+      payment.country = "ID";
+    }
     await super.checkout(
       payment: payment,
       itemTransactions: itemTransactions,
