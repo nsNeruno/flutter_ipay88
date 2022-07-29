@@ -6,5 +6,7 @@ abstract class IPay88Platform {
 
   late final IPay sdk = IPay88();
 
-  late final IPay sdkID = IPay88Indonesia();
+  late final IPay sdkID = IPay88Indonesia.production();
+
+  late final IPay sdkIDSandbox = IPay88Indonesia.sandbox();
 }

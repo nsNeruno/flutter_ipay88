@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  crypto:
+    dependency: transitive
+    description:
+      name: crypto
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -92,6 +99,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  dio:
+    dependency: transitive
+    description:
+      name: dio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.6"
   fake_async:
     dependency: transitive
     description:
@@ -130,7 +144,7 @@ packages:
     description:
       path: flutter_ipay88_id
       ref: master
-      resolved-ref: "7d58052cdc436982f13f3db3a4cab5d575ee3c74"
+      resolved-ref: da76107e394281e58f9f6e06b30d2887ee6d9757
       url: "https://github.com/nsNeruno/flutter_ipay88.git"
     source: git
     version: "0.0.1"
@@ -139,16 +153,18 @@ packages:
     description:
       path: flutter_ipay88_my
       ref: master
-      resolved-ref: "7d58052cdc436982f13f3db3a4cab5d575ee3c74"
+      resolved-ref: da76107e394281e58f9f6e06b30d2887ee6d9757
       url: "https://github.com/nsNeruno/flutter_ipay88.git"
     source: git
     version: "0.0.1"
   flutter_ipay88_platform_interface:
     dependency: transitive
     description:
-      path: "../../../../development/flutter/.pub-cache/git/flutter_ipay88-7d58052cdc436982f13f3db3a4cab5d575ee3c74/flutter_ipay88_platform_interface"
-      relative: true
-    source: path
+      path: flutter_ipay88_platform_interface
+      ref: master
+      resolved-ref: da76107e394281e58f9f6e06b30d2887ee6d9757
+      url: "https://github.com/nsNeruno/flutter_ipay88.git"
+    source: git
     version: "0.0.1"
   flutter_lints:
     dependency: "direct dev"
@@ -167,6 +183,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   js:
     dependency: transitive
     description:

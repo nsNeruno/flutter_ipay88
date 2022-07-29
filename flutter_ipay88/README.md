@@ -18,7 +18,7 @@ flutter_ipay88:
 
 #### Android Side
 Add declaration of additional Activities provided by _**IPay88**_ under `AndroidManifest.xml`.
-##### Malaysian and Other Countries
+##### Malaysian and Other Countries, Except Indonesia
 ```xml
 <!-- AndroidManifest.xml under android/app/src/main/ -->
 <manifest ...>
@@ -31,32 +31,9 @@ Add declaration of additional Activities provided by _**IPay88**_ under `Android
     </application>
     </manifest>
 ```
-##### Indonesia Only
-Under your project's `android` directory, look for `gradle.properties` or create one if it doesn't exist and add these lines
-```properties
-# If your project is using Gradle version below 7
-android.jetifier.blacklist=ipay88_android
-# If your project is using Gradle version 7 and above
-android.jetifier.ignoreList=ipay88_android
-# Just in case you can add both of these lines as Gradle doesn't raise an error about this
-```
-Then on your `AndroidManifest.xml`
-```xml
-<!-- AndroidManifest.xml under android/app/src/main/ -->
-<manifest ...>
-<application ...>
-    <!-- Your MainActivity declaration -->
 
-    <!--- Declare these Activities -->
-<activity android:name="com.ipay.IpayAcitivity" android:configChanges="orientation|screenSize"/>
-<activity android:name="com.ipay.IpayAcitivityR" android:configChanges="orientation|screenSize"/>
-    </application>
-    </manifest>
-```
-If you're covering all regions, you may add both declarations.
-**Notice the different Activity class names.**
 #### IOS Side
-Regardless of region, there's an additional **C static library** file named `libipay88sdk.a` that needs to be installed separatedly through XCode. The file could be obtained by different means, where for Indonesia region, you can download it directly at [IPay88 Official Mobile SDK Documentation page](https://ipay88.co.id/docs/mobilesdk). As for the rest, you may contact IPay88 Team and get a quote.
+Except on Indonesian region, there's an additional **C static library** file named `libipay88sdk.a` that needs to be installed separatedly through XCode. You may contact IPay88 Team and get a quote.
 ##### Installing the static library
 - Select your App Build Target (assumed to be named _**Runner**_) on the left pane on your XCode
 - Look for **Build Phases** tab
@@ -80,6 +57,8 @@ IPay sdk = plugin.sdk;
 
 // Access the Indonesian SDK
 IPay sdkID = plugin.sdkID;
+// Access the Sandbox version of Indonesian SDK
+sdkID = plugin.sdkIDSandbox;
 
 // Create an empty IPay88 Payment Object and assign some values to it's fields
 IPayPayment payment = IPayPayment()
@@ -88,12 +67,20 @@ IPayPayment payment = IPayPayment()
 
 // Create an IPay88 Payment Object with pre-init values
 payment = IPayPayment(
-paymentId: "test",
-amount: "100.0",
+  paymentId: "test",
+  amount: "100.0",
 );
 
 // Checking out with the Payment Object
-sdk.checkout(payment,);
+sdk.checkout(
+  payment: payment,
+  // itemTransactions: List<ItemTransaction> // required for Indonesia
+  // shippingAddress: IPayAddress // required for Indonesia
+  // billingAddress: IPayAddress // optional, filled in by shippingAddress for Indonesia
+  // sellers: List<IPaySeller> // required for Indonesia
+  // method: IPaymentMethod // optional, used by Indonesia
+/ / settingFields: List<SettingField> // optional, used by Indonesia
+);
 
 // Create an empty IPay88 Requery Object and assign some values to it's fields
 IPayRequery requery = IPayRequery()
@@ -103,9 +90,9 @@ IPayRequery requery = IPayRequery()
 
 // Create an IPay88 Payment Object with pre-init values
 requery = IPayRequery(
-merchantCode: "test",
-refNo: "123",
-amount: "100.0",
+  merchantCode: "test",
+  refNo: "123",
+  amount: "100.0",
 );
 
 sdk.requery(requery);
