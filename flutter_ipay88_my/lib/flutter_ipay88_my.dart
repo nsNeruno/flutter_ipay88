@@ -25,6 +25,10 @@ class IPay88 extends IPay {
     if (payment.country.trim().isEmpty) {
       payment.country = "MY";
     }
+    channel.invokeMethod(
+      "checkout",
+      payment.toArguments(),
+    );
     return super.checkout(payment);
   }
 

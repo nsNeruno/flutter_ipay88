@@ -2,10 +2,10 @@ package lab.neruno.flutter_ipay88_id
 
 import android.app.Activity
 import androidx.annotation.NonNull
-import com.ipay.Ipay
-import com.ipay.IpayPayment
-import com.ipay.IpayR
-import com.ipay.IpayResultDelegate
+//import com.ipay.Ipay
+//import com.ipay.IpayPayment
+//import com.ipay.IpayR
+//import com.ipay.IpayResultDelegate
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -22,16 +22,18 @@ class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
-  private lateinit var channelDelegate: IpayResultDelegate
+//  private lateinit var channelDelegate: IpayResultDelegate
   private var activity: Activity? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "id.lab.neruno.ipay88/platform")
     channel.setMethodCallHandler(this)
-    channelDelegate = IPayChannelDelegate(channel)
+//    channelDelegate = IPayChannelDelegate(channel)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    result.notImplemented()
+    /*
     when (call.method) {
       "checkout" -> {
         result.success(null)
@@ -72,6 +74,7 @@ class FlutterIpay88IdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       }
       else -> result.notImplemented()
     }
+    */
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {

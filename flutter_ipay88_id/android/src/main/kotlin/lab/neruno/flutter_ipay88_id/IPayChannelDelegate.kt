@@ -1,3 +1,4 @@
+/*
 package lab.neruno.flutter_ipay88_id
 
 import com.ipay.IpayResultDelegate
@@ -53,3 +54,4 @@ class IPayChannelDelegate(private var channel : MethodChannel): IpayResultDelega
         )
     }
 }
+*/

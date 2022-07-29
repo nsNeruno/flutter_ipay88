@@ -1,17 +1,17 @@
 #import "FlutterIpay88IdPlugin.h"
-#import "Ipay.h"
-#import "IpayPayment.h"
+// #import "Ipay.h"
+// #import "IpayPayment.h"
 
 @implementation FlutterIpay88IdPlugin
 
 static FlutterMethodChannel* channel;
 
--(id) init {
-    self = [super init];
-    paymentSdk = [[Ipay alloc] init];
-    paymentSdk.delegate = self;
-    return self;
-}
+//-(id) init {
+//    self = [super init];
+//    paymentSdk = [[Ipay alloc] init];
+//    paymentSdk.delegate = self;
+//    return self;
+//}
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     channel = [FlutterMethodChannel
@@ -22,6 +22,8 @@ static FlutterMethodChannel* channel;
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+    result(FlutterMethodNotImplemented);
+    /*
     if ([call.method isEqualToString:@"checkout"]) {
         result(nil);
         if (![call.arguments isKindOfClass:[NSDictionary class]]) {
@@ -80,8 +82,10 @@ static FlutterMethodChannel* channel;
     } else {
         result(FlutterMethodNotImplemented);
     }
+    */
 }
 
+/*
 - (void)paymentSuccess:(NSString *)refNo withTransId:(NSString *)transId withAmount:(NSString *)amount withRemark:(NSString *)remark withAuthCode:(NSString *)authCode {
     [channel invokeMethod:@"onPaymentSuccess" arguments:@{
         @"transId": transId,
@@ -130,6 +134,7 @@ static FlutterMethodChannel* channel;
         @"result": result
     }];
 }
+*/
 
 
 @end
