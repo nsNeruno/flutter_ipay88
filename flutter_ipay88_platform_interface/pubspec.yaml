@@ -1,7 +1,7 @@
 name: flutter_ipay88_platform_interface
 description: Common Platform Interfaces for IPay88 Payment Gateway Mobile SDK.
 version: 0.0.1
-homepage:
+homepage: https://github.com/nsNeruno/flutter_ipay88
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

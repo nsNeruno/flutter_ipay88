@@ -6,5 +6,5 @@ abstract class IPayResultDelegate {
 
   void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,);
 
-  void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result,);
+  void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result, String? errDesc,);
 }

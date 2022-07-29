@@ -9,9 +9,19 @@ import 'package:flutter_ipay88_platform_interface/src/payment.dart';
 import 'package:flutter_ipay88_platform_interface/src/requery.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'src/address.dart';
+import 'src/item_transaction.dart';
+import 'src/seller.dart';
+import 'src/setting_field.dart';
+
+export 'src/address.dart';
 export 'src/delegate.dart';
+export 'src/item_transaction.dart';
 export 'src/payment.dart';
 export 'src/requery.dart';
+export 'src/responses.dart';
+export 'src/seller.dart';
+export 'src/setting_field.dart';
 
 abstract class IPay {
 
@@ -33,26 +43,16 @@ abstract class IPay {
         }
         switch (method) {
           case "onPaymentSucceeded":
-            for (var d in delegates) {
-              d.onPaymentSucceeded(
-                transId, refNo, amount, remark, authCode,
-              );
-            }
+            onPaymentSucceeded(transId, refNo, amount, remark, authCode,);
             break;
           case "onPaymentFailed":
-            for (var d in delegates) {
-              d.onPaymentFailed(transId, refNo, amount, remark, errDesc,);
-            }
+            onPaymentFailed(transId, refNo, amount, remark, errDesc,);
             break;
           case "onPaymentCanceled":
-            for (var d in delegates) {
-              d.onPaymentCanceled(transId, refNo, amount, remark, errDesc,);
-            }
+            onPaymentCanceled(transId, refNo, amount, remark, errDesc,);
             break;
           case "onRequeryResult":
-            for (var d in delegates) {
-              d.onRequeryResult(merchantCode, refNo, amount, result,);
-            }
+            onRequeryResult(merchantCode, refNo, amount, result, errDesc,);
             break;
         }
       },
@@ -67,28 +67,66 @@ abstract class IPay {
     }
   }
 
-  Future<void> checkout(IPayPayment payment,) async {
+  @mustCallSuper
+  Future<void> checkout({
+    required IPayPayment payment,
+    List<ItemTransaction>? itemTransactions,
+    IPayAddress? shippingAddress,
+    IPayAddress? billingAddress,
+    List<IPaySeller>? sellers,
+    IPayPaymentMethod? method,
+    List<SettingField>? settingFields,
+  }) async {
     await _permissionsCheck();
-    channel.invokeMethod(
-      "checkout",
-      payment.toArguments(),
-    );
   }
 
+  @mustCallSuper
   Future<void> requery(IPayRequery requery,) async {
     await _permissionsCheck();
-    channel.invokeMethod(
-      "requery",
-      requery.toArguments(),
-    );
   }
 
   void addDelegate(IPayResultDelegate delegate,) {
-    delegates.add(delegate,);
+    if (!delegates.contains(delegate,)) {
+      delegates.add(
+        delegate,
+      );
+    }
   }
 
   void removeDelegate(IPayResultDelegate delegate,) {
     delegates.remove(delegate,);
+  }
+
+  @protected
+  void onPaymentSucceeded(String? transId, String? refNo, String? amount, String? remark, String? authCode,) {
+    for (var d in delegates) {
+      d.onPaymentSucceeded(
+        transId, refNo, amount, remark, authCode,
+      );
+    }
+  }
+
+  @protected
+  void onPaymentFailed(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    for (var d in delegates) {
+      d.onPaymentFailed(
+        transId, refNo, amount, remark, errDesc,
+      );
+    }
+  }
+
+  @protected
+  void onPaymentCanceled(String? transId, String? refNo, String? amount, String? remark, String? errDesc,) {
+    for (var d in delegates) {
+      d.onPaymentCanceled(transId, refNo, amount, remark, errDesc,);
+    }
+  }
+
+  @protected
+  void onRequeryResult(String? merchantCode, String? refNo, String? amount, String? result, String? errDesc,) {
+    for (var d in delegates) {
+      d.onRequeryResult(merchantCode, refNo, amount, result, errDesc,);
+    }
   }
 
   @protected
