@@ -67,22 +67,34 @@ class IPay88Indonesia extends IPay {
       method: method,
       settingFields: settingFields,
     );
-    if (response == null) {
-      onPaymentFailed(
-        null,
-        payment.refNo,
-        payment.amount,
-        payment.remark,
-        null,
-      );
-    } else {
-      onPaymentSucceeded(
-        response.checkoutId,
-        response.refNo,
-        payment.amount,
-        payment.remark,
-        response.code,
-      );
+    switch (response?.code) {
+      case "0":
+        onPaymentFailed(
+          response?.checkoutId,
+          payment.refNo,
+          payment.amount,
+          payment.remark,
+          null,
+        );
+        break;
+      case "1":
+        onPaymentSucceeded(
+          response?.checkoutId,
+          response?.refNo,
+          payment.amount,
+          payment.remark,
+          response?.code,
+        );
+        break;
+      default:
+        onPaymentCanceled(
+          response?.checkoutId,
+          payment.refNo,
+          payment.amount,
+          payment.remark,
+          response?.message,
+        );
+        break;
     }
   }
 
