@@ -1,1 +1,3 @@
+include ':ipay88'
+
 rootProject.name = 'flutter_ipay88_my'
