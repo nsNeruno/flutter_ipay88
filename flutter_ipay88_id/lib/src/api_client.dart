@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
@@ -82,6 +83,25 @@ class ApiClient {
       data: body,
     );
     var data = response.data;
+    assert(
+      () {
+        const logName = "IPay88ID.ApiClient.checkout";
+        const encoder = JsonEncoder.withIndent('\t',);
+        log(
+          response.realUri.toString(),
+          name: "$logName.realUri",
+        );
+        log(
+          encoder.convert(body,),
+          name: "$logName.body",
+        );
+        log(
+          data is Map<String, dynamic> ? encoder.convert(data,) : data.toString(),
+          name: "$logName.response(${response.statusCode})",
+        );
+        return true;
+      }(),
+    );
     if (data is Map<String, dynamic>) {
       return CheckoutResponse(data,);
     }
