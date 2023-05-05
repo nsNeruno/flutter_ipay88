@@ -1,6 +1,8 @@
-# flutter_ipay88
+# flutter_ipay88 (DISCONTINUED)
 
 Unofficial Implementation for IPay88 Payment Gateway Mobile SDK.
+
+**[Discontinued]**: The SDKs are not well usable even on native side.
 
 ## Getting Started
 
